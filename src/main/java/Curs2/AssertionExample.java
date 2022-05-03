@@ -1,5 +1,6 @@
 package Curs2;
 
+
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -24,6 +25,7 @@ public class AssertionExample {
         System.out.println("Hard assert incepe aici");
         assertTrue(false);
         System.out.println("Cod dupa hard assert!");
+
         System.out.println("Hard assert se inchide aici");
 
     }
