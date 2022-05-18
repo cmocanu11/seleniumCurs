@@ -20,7 +20,7 @@ public class BuyBook extends BaseTest {
         searchButton.click();
         WebElement searchField = driver.findElement(By.cssSelector("input[class='search_field']"));
         searchField.sendKeys("The story about me");
-        searchButton.click();
+        searchButton.click(); //aici mai are momente cand la unele rulari ceva ii da cu virgula si se blocheaza
         WebElement viewMoreButton = driver.findElement(By.cssSelector("a[id='viewmore_link']"));
         viewMoreButton.click();
         WebElement searchedBook = driver.findElement(By.cssSelector("a[href$='about-me/']"));
