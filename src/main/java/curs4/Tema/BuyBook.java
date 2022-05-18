@@ -10,9 +10,11 @@ import utils.BaseTest;
 import static org.testng.Assert.*;
 
 public class BuyBook extends BaseTest {
+    WebDriverWait wait;
 
     @Test(priority = 1)
     private void buyBook() throws InterruptedException {
+        wait = new WebDriverWait(driver,10);
 
         WebElement searchButton = driver.findElement(By.cssSelector("button[class*='search_submit'][title='Open search']"));
         searchButton.click();
@@ -22,6 +24,7 @@ public class BuyBook extends BaseTest {
         WebElement viewMoreButton = driver.findElement(By.cssSelector("a[id='viewmore_link']"));
         viewMoreButton.click();
         WebElement searchedBook = driver.findElement(By.cssSelector("a[href$='about-me/']"));
+
         wait.until(ExpectedConditions.textToBePresentInElement(searchedBook,"The story about me"));
         searchedBook.click();
 
@@ -38,7 +41,7 @@ public class BuyBook extends BaseTest {
         assertEquals(driver.getCurrentUrl(),"https://keybooks.ro/cart/");
     }
     @Test(priority = 2)
-    private void cartTests(){
+    private void cartTests() throws InterruptedException {
         WebElement qtyInput = driver.findElement(By.cssSelector("input[class*='input-text qty']"));
         qtyInput.clear();
         qtyInput.sendKeys("2");
@@ -46,9 +49,10 @@ public class BuyBook extends BaseTest {
         updateCart.click();
         WebElement updatedCartMessage = driver.findElement(By.cssSelector("div[class='woocommerce-message']"));
         assertEquals(updatedCartMessage.getText(),"Cart updated.");
-
         WebElement proceedToCheckout = driver.findElement(By.cssSelector("a[class*='checkout-button']"));
-        wait.until(ExpectedConditions.visibilityOf(proceedToCheckout));
+//        wait.until(ExpectedConditions.visibilityOf(proceedToCheckout));
+//        wait.until(ExpectedConditions.elementToBeClickable(proceedToCheckout));
+        Thread.sleep(2000); //am pus cu thread.sleep din cauza faptului ca atunci cand foloseam wait. mergea aleator si n-am gasit alta solutie momentan
         proceedToCheckout.click();
         assertEquals(driver.getCurrentUrl(),"https://keybooks.ro/checkout/");
 

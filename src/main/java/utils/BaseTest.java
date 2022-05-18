@@ -13,14 +13,12 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
 
     public WebDriver driver;
-    public WebDriverWait wait;
     public JavascriptExecutor jse;
 
     @BeforeClass
     public void setUp(){
         System.setProperty("webdriver.chrome.driver","drivers/chromedriver.exe");
         driver = new ChromeDriver();
-        wait = new WebDriverWait(driver,10);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
 
