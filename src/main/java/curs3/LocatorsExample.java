@@ -16,14 +16,14 @@ public class LocatorsExample extends BaseTest {
         WebElement tagName = driver.findElement(By.tagName("em"));
         System.out.println(tagName.isDisplayed() + " " + tagName.getText());
 
-        jseExecutor.executeScript("arguments[0].setAttribute('style','background:yellow;border:4px solid red;')",tagName);
+        jse.executeScript("arguments[0].setAttribute('style','background:yellow;border:4px solid red;')",tagName);
         assertEquals(tagName.getText(),"Discover");
     }
 
     @Test(priority = 2)
     public void linkTextLocator() throws InterruptedException {
         WebElement linkText = driver.findElement(By.linkText("BOOKS"));
-        jseExecutor.executeScript("arguments[0].setAttribute('style','background:yellow;border:4px solid red;')",linkText);
+        jse.executeScript("arguments[0].setAttribute('style','background:yellow;border:4px solid red;')",linkText);
         linkText.click();
         assertEquals(driver.getCurrentUrl(),"https://keybooks.ro/shop/");
     }
@@ -38,7 +38,7 @@ public class LocatorsExample extends BaseTest {
     @Test(priority = 4)
     public void classNameLocator(){
         WebElement productPrice = driver.findElement(By.className("price"));
-        jseExecutor.executeScript("arguments[0].setAttribute('style','background:yellow;border:4px solid red;')",productPrice);
+        jse.executeScript("arguments[0].setAttribute('style','background:yellow;border:4px solid red;')",productPrice);
         assertTrue(productPrice.getText().contains("20.55"));
     }
 
@@ -46,11 +46,11 @@ public class LocatorsExample extends BaseTest {
     public void idLocator() {
         //<li class="reviews_tab active" id="tab-title-reviews" role="tab" aria-controls="tab-reviews">
         WebElement tabReview = driver.findElement(By.id("tab-title-reviews"));
-        jseExecutor.executeScript("window.scrollBy(0,500);");
+        jse.executeScript("window.scrollBy(0,500);");
 
         tabReview.click();
         WebElement comment = driver.findElement(By.id("reply-title"));
-        jseExecutor.executeScript("arguments[0].setAttribute('style', 'background:yellow; border:4px solid red;')",
+        jse.executeScript("arguments[0].setAttribute('style', 'background:yellow; border:4px solid red;')",
                 comment);
         assertTrue(comment.isDisplayed());
     }
@@ -58,21 +58,21 @@ public class LocatorsExample extends BaseTest {
     @Test(priority = 6)
     public void checkBoxTest(){
         WebElement checkbox = driver.findElement(By.id("wp-comment-cookies-consent"));
-        jseExecutor.executeScript("arguments[0].setAttribute('style','background:yellow;border:4px solid red;')",checkbox);
+        jse.executeScript("arguments[0].setAttribute('style','background:yellow;border:4px solid red;')",checkbox);
 //        checkbox.isSelected();
     }
 
     @Test(priority = 7)
     public void xpathLocator() throws InterruptedException {
         WebElement commentField = driver.findElement(By.xpath("//textarea[@id='comment']"));
-        jseExecutor.executeScript("arguments[0].setAttribute('style','background:yellow;border:4px solid red;')",commentField);
+        jse.executeScript("arguments[0].setAttribute('style','background:yellow;border:4px solid red;')",commentField);
         commentField.sendKeys("My comment");
     }
 
     @Test(priority = 8)
     public void nameLocator() throws InterruptedException {
         WebElement nameField = driver.findElement(By.name("author"));
-        jseExecutor.executeScript("arguments[0].setAttribute('style','background:yellow;border:4px solid red;')",nameField);
+        jse.executeScript("arguments[0].setAttribute('style','background:yellow;border:4px solid red;')",nameField);
         nameField.sendKeys("John Doe");
         nameField.clear();
         nameField.sendKeys("Johnny Bravo");
@@ -81,7 +81,7 @@ public class LocatorsExample extends BaseTest {
     @Test(priority = 9)
     public void cssLocator() throws InterruptedException {
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-        jseExecutor.executeScript("arguments[0].setAttribute('style','background:yellow;border:4px solid red;')",emailField);
+        jse.executeScript("arguments[0].setAttribute('style','background:yellow;border:4px solid red;')",emailField);
         emailField.sendKeys("johhnny.bravo@cnn.com");
 
         WebElement checkBox = driver.findElement(By.cssSelector("input[type='checkbox']"));

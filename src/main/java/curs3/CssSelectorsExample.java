@@ -22,14 +22,14 @@ public class CssSelectorsExample extends BaseTest {
 //        By.id('menu_user')
         //id --> #
         WebElement loginPopup = driver.findElement(By.cssSelector("#menu_user"));
-        jseExecutor.executeScript("arguments[0].setAttribute('style','background:yellow;border:4px solid red;')",loginPopup);
+        jse.executeScript("arguments[0].setAttribute('style','background:yellow;border:4px solid red;')",loginPopup);
 
         System.out.println(loginPopup.getText());
 //        loginPopup.click();
 
         // class --> .
         WebElement logoSlogan = driver.findElement(By.cssSelector(".logo_slogan"));
-        jseExecutor.executeScript("arguments[0].setAttribute('style','background:yellow;border:4px solid red;')",logoSlogan);
+        jse.executeScript("arguments[0].setAttribute('style','background:yellow;border:4px solid red;')",logoSlogan);
         System.out.println(logoSlogan.getText());
 
         //div.column-1_2 h3.sc_title_underline
