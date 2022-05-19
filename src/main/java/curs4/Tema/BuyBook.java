@@ -50,9 +50,10 @@ public class BuyBook extends BaseTest {
         WebElement updatedCartMessage = driver.findElement(By.cssSelector("div[class='woocommerce-message']"));
         assertEquals(updatedCartMessage.getText(),"Cart updated.");
         WebElement proceedToCheckout = driver.findElement(By.cssSelector("a[class*='checkout-button']"));
-//        wait.until(ExpectedConditions.visibilityOf(proceedToCheckout));
+        wait.until(ExpectedConditions.visibilityOf(proceedToCheckout));
 //        wait.until(ExpectedConditions.elementToBeClickable(proceedToCheckout));
-        Thread.sleep(2000); //am pus cu thread.sleep din cauza faptului ca atunci cand foloseam wait. mergea aleator si n-am gasit alta solutie momentan
+//        Thread.sleep(2000); //am pus cu thread.sleep din cauza faptului ca atunci cand foloseam wait. mergea aleator si n-am gasit alta solutie momentan
+        jse.executeScript("window.scrollBy(0,300)");
         proceedToCheckout.click();
         assertEquals(driver.getCurrentUrl(),"https://keybooks.ro/checkout/");
 
