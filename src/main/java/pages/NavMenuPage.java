@@ -5,6 +5,8 @@ import curs7.pages.ContactsPage;
 import curs7.pages.ShopPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class NavMenuPage {
 
@@ -67,5 +69,7 @@ public class NavMenuPage {
     public String getLoggedUsername(){
         return driver.findElement(loggedUsername).getText();
     }
+
+//    @FindBy(linkText = "BLOG") public WebElement blogLink;
 
 }

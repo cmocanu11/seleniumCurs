@@ -10,21 +10,21 @@ import static org.testng.AssertJUnit.*;
 public class DropDownTest extends BaseTest {
 
     public ShopPage shopPage;
-    @Test
+    @Test (groups = "ProductFunctionality")
     public void filterByValue() {
         shopPage = navMenu.navToShopPage();
         shopPage.filterByValue("popularity");
         assertEquals(shopPage.getCurrentSelectedOption(),"Sort by popularity");
     }
 
-    @Test
+    @Test(groups = "ProductFunctionality")
     public void filterByIndex(){
         shopPage = navMenu.navToShopPage();
         shopPage.filterByIndex(3);
         assertEquals(shopPage.getCurrentSelectedOption(),"Sort by latest");
     }
 
-    @Test
+    @Test(groups = "ProductFunctionality")
     public void filterByVisibleText(){
         shopPage = navMenu.navToShopPage();
         shopPage.filterByVisibleText("Sort by price: high to low");

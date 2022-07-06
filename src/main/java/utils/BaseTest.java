@@ -9,6 +9,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import pages.NavMenuPage;
 
 import java.awt.*;
@@ -25,7 +26,9 @@ public class BaseTest {
     public JavascriptExecutor jse;
     public NavMenuPage navMenu;
 
-    @BeforeClass
+//    @Parameters({"url"})
+    @BeforeClass (alwaysRun = true)
+//    public void setUp(String url){
     public void setUp(){
         System.setProperty("webdriver.chrome.driver","drivers/chromedriver.exe");
         driver = new ChromeDriver();
@@ -38,13 +41,14 @@ public class BaseTest {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
 
+//        openSite(url);
         openSite();
         jse = (JavascriptExecutor)driver;
 
         navMenu = new NavMenuPage(driver);
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void tearDown() throws InterruptedException {
         Thread.sleep(4*1000);
         driver.quit();

@@ -1,5 +1,6 @@
 package tests;
 
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.NavMenuPage;
@@ -9,16 +10,23 @@ import static org.testng.AssertJUnit.*;
 
 public class LoginTest extends BaseTest {
 
-    @Test
-    public void loginTest(){
-        NavMenuPage navMenuPage = new NavMenuPage(driver);
-        navMenuPage.navigateToLogin();
-
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.setUsernameField("TestUser");
-        loginPage.setPasswordField("12345@67890");
+    @Parameters({"user","pass"})
+    @Test (groups = "LoginFunctionality", priority = 1)
+    public void loginTestValid(String username, String password){
+        LoginPage loginPage = navMenu.navToLogin();
+        loginPage.setUsernameField(username);
+        loginPage.setPasswordField(password);
         loginPage.clickSubmit();
+        assertEquals(navMenu.getLoggedUsername(), "Test User");
+        loginPage.logoutFromApp();
+    }
 
-        assertEquals(navMenuPage.getLoggedUsername(), "Test User");
+    @Parameters({"invalidUser","invalidPass"})
+    @Test (groups = "LoginFunctionality", priority = 2)
+    public void loginTestInvalid(String username, String password){
+        LoginPage loginPage = navMenu.navToLogin();
+        loginPage.loginInApp(username,password);
+        assertTrue(loginPage.isLoginErrorMessageDisplayed());
+
     }
 }
